@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<assembler>
+  <scripts>
+    <script>
+      <fileName>wps-ol-client.js</fileName>
+      <includes>
+      	<include>WOC.js</include>
+        <include>WPSServiceContainer.js</include>
+        <include>WPSService.js</include>
+        <include>WPSProcess.js</include>
+        <include>WPSExecution.js</include>
+		<include>IdentifiedObject.js</include>
+		<include>OWServiceIdentification.js</include>
+		<include>OWSReguestBase.js</include>
+		<include>WPSClient.js</include>
+		<include>BBOXButton.js</include>
+		<include>BBOX.js</include>
+		<include>VectorStoringGML.js</include>
+		<include>VectorStoringKML.js</include>
+		<include>ExceptionReport.js</include>
+		<include>XMLViewer.js</include>
+		<include>Data/Format.js</include>
+		<include>Data/UoM.js</include>
+		<include>Data/DataType.js</include>
+		<include>Data/ComplexData.js</include>
+		<include>Data/BoundingBoxData.js</include>
+		<include>Data/BoundingBoxOutput.js</include>
+		<include>Data/LiteralData.js</include>
+		<include>Data/LiteralInputData.js</include>
+		<include>Data/LiteralOutputData.js</include>
+		<include>Data/WPSData.js</include>
+		<include>Data/WPSInputData.js</include>
+		<include>Data/WPSOutputData.js</include>
+	  </includes>
+    </script>
+  </scripts>
+</assembler>

@@ -1,0 +1,56 @@
+div.wfsControlDiv{
+	width: 400px; /*height: 300px;*/
+	color: white;
+	font-family: verdana;
+	font-size: 11px;
+	background-color: #63C4E4;
+	display: block;
+	z-index: 999;
+	position: absolute;
+	/*bottom: 45px;
+	left: 0px;*/
+	top: 40px;
+	left: 60px;
+	padding: 15px;
+	border-top-right-radius: 7px;		-moz-border-radius-topright: 7px;		-webkit-border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px; 	-moz-border-radius-bottomright: 7px; 	-webkit-border-bottom-right-radius: 7px;		
+}
+
+div#wfs_control_opener{
+	margin-left: 3px;
+	color: white;
+	font-family: verdana; font-weight: bold;
+	font-size: 11px;
+	width: 40px; height: 18px;
+	/*background-color: #63C4E4;*/
+	display: block;
+	z-index: 999;
+	position: absolute;
+	top: 40px;
+	left: 60px;
+	/*padding: 2px 5px 2px 5px;
+	border: 1px solid white;
+	border-radius: 5px;		-moz-border-radius: 5px;		-webkit-border-radius: 5px;
+	border-radius: 5px; 	-moz-border-radius: 5px; 	-webkit-border-radius: 5px;	*/	
+	cursor: pointer;
+	background-image: url("../img/wfs_icon.png");
+}
+
+div#wfs_control_closer{
+	color: white;
+	width: 10px; height: 10px;
+	float: right;
+	font-family: verdana; font-weight: bold;
+	font-size: 11px;
+	background-color: #63C4E4;
+	display: block;
+	z-index: 999;
+	position: relative;
+	top: 0px;
+	right: 0px;
+	padding: 2px 2px 5px 5px;
+	border: 1px solid white;
+	border-radius: 7px;		-moz-border-radius: 7px;		-webkit-border-radius: 7px;
+	border-radius: 7px; 	-moz-border-radius: 7px; 	-webkit-border-radius: 7px;	
+	cursor: pointer;	
+}
