@@ -1,5 +1,5 @@
 /****************************************************************
-* 52°North WPS OpenLayers Client
+* 52ï¿½North WPS OpenLayers Client
 *
 * for using WPS-based processes in browser-based applications.
 * Copyright (C) 2010
@@ -453,7 +453,7 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
         */
         updateCapabilities:function() {
                 // Update the names (titles) of the services in the service list!
-                for(var i=0; i<this.serviceList.options.length; i++) {                     // Schleife über alle WPSServices in der SelectBox
+                for(var i=0; i<this.serviceList.options.length; i++) {                     // Schleife ï¿½ber alle WPSServices in der SelectBox
                         var url =  this.serviceList.options[i].value;                      // option[i] URL
                         var wpsService = null;
                         try {
@@ -557,16 +557,16 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
          updateDescription:function() {
                  this.updateInfoText("Updating process description", 'green');
                  // Input choices.
-                 var wpsService = this.wpsServiceContainer.getService(                                  // holt sich den aktuell ausgewählten WPSService
+                 var wpsService = this.wpsServiceContainer.getService(                                  // holt sich den aktuell ausgewï¿½hlten WPSService
                                  this.serviceList.options[this.serviceList.selectedIndex].value);
-                 var processIdentifier = this.processSelection.options[                                 // holt sich den aktuell ausgewählten Prozess des aktuell ausgewählten WPSService
+                 var processIdentifier = this.processSelection.options[                                 // holt sich den aktuell ausgewï¿½hlten Prozess des aktuell ausgewï¿½hlten WPSService
                                  this.processSelection.selectedIndex].value;
                  if(wpsService.getProcess(processIdentifier).getInputsCount() == 0) {                   // wenn der Prozess keine inputs hat...
                          // No inputs!
                          this.updateInfoText("", null);
                          return;
                  }
-                 var inputs = wpsService.getProcess(processIdentifier).getInputs();                     // holt sich die Inputs den aktuell ausgewählten Prozesses
+                 var inputs = wpsService.getProcess(processIdentifier).getInputs();                     // holt sich die Inputs den aktuell ausgewï¿½hlten Prozesses
 
                  if(inputs != null) {
                          this.processDiv.style.display = 'block';
@@ -584,12 +584,12 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
                          // Create header row
                          var dataTableRow = document.createElement('tr');
                          var dataTableHeader0 = document.createElement('th');
-                         dataTableHeader0.appendChild(document.createTextNode("Input title"));                    // die Überschrift 1 in der div
+                         dataTableHeader0.appendChild(document.createTextNode("Input title"));                    // die ï¿½berschrift 1 in der div
                          var dataTableHeader1 = document.createElement('th');
-                         dataTableHeader1.appendChild(document.createTextNode("Usage"));                          // die Überschrift 2 in der div
+                         dataTableHeader1.appendChild(document.createTextNode("Usage"));                          // die ï¿½berschrift 2 in der div
                          dataTableHeader1.className = 'usageValue';
                          var dataTableHeader2 = document.createElement('th');
-                         dataTableHeader2.appendChild(document.createTextNode("Value"));                          // die Überschrift 3 in der div
+                         dataTableHeader2.appendChild(document.createTextNode("Value"));                          // die ï¿½berschrift 3 in der div
                          with(dataTableRow) {
                                  appendChild(dataTableHeader0);
                                  appendChild(dataTableHeader1);
@@ -1749,10 +1749,20 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
          */
         getNewServiceButtonsDiv:function() {
                 // Button to query the server -- Used to query a WPS service's capabilities.
+                var refreshServiceButton = document.createElement('input');
+                with(refreshServiceButton) {
+                    type = 'button';
+                    value = 'Refresh';
+                }
+                OpenLayers.Event.observe(refreshServiceButton, "click",
+                    OpenLayers.Function.bindAsEventListener(
+                            this.refreshServiceButtonClick, this)
+                        );
+
                 var addServiceButton = document.createElement('input');
                 with(addServiceButton) {
                         type = 'button';
-                        value = 'Add service';
+                        value = 'Add WPS';
                 }
                 OpenLayers.Event.observe(addServiceButton, "click",
                     OpenLayers.Function.bindAsEventListener(
@@ -1760,7 +1770,7 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
                 var removeServiceButton = document.createElement('input');
                 with(removeServiceButton) {
                         type = 'button';
-                        value = 'Remove service';
+                        value = 'Remove WPS';
                 }
                 OpenLayers.Event.observe(removeServiceButton, "click",
                     OpenLayers.Function.bindAsEventListener(
@@ -1768,7 +1778,7 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
                 var showCapabilitiesButton = document.createElement('input');
                 with(showCapabilitiesButton) {
                         type = 'button';
-                        value = 'Show capabilities';
+                        value = 'Capabilities';
                 }
                 OpenLayers.Event.observe(showCapabilitiesButton, "click",
                     OpenLayers.Function.bindAsEventListener(
@@ -1784,11 +1794,17 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
                 var td2 = document.createElement('td');
                 td2.className = 'button';
                 td2.appendChild(removeServiceButton)
+                var td3 = document.createElement('td');
+                td3.className = 'button';
+                td3.appendChild(refreshServiceButton);
+
                 var tr = document.createElement('tr');
                 with(tr) {
+                        appendChild(td3);
                         appendChild(td0);
                         appendChild(td1);
                         appendChild(td2);
+
                 }
                 buttonsTable.appendChild(tr);
                 var div = document.createElement('div');
@@ -2018,6 +2034,12 @@ WOC.WPSClient = OpenLayers.Class(OpenLayers.Control, {
                 var wpsService = this.wpsServiceContainer.getService(serviceURL);
                 wpsService.popupProcessDescriptions(processIdentifiers,
                                 this.describeProcessMethod);
+        },
+
+        refreshServiceButtonClick: function() {
+            var currentService = this.serviceList.value;
+            this.removeService(this.serviceList.value);
+            this.addService(currentService);
         },
 
         addServiceButtonClick:function() {
